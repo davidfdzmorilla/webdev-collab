@@ -3,6 +3,7 @@ import next from 'next';
 import { Server as SocketIOServer } from 'socket.io';
 import { createClient } from 'redis';
 import { db, chatMessages } from './lib/db';
+import { setupYjsServer } from './lib/yjs-server';
 
 const dev = process.env.NODE_ENV !== 'production';
 const hostname = 'localhost';
@@ -31,6 +32,9 @@ app.prepare().then(async () => {
   await redisClient.connect();
 
   console.log('✅ Redis connected');
+
+  // Initialize Yjs WebSocket server
+  setupYjsServer(httpServer);
 
   // Socket.io event handlers
   io.on('connection', (socket) => {

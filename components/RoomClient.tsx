@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { Chat } from './Chat';
+import { Editor } from './Editor';
 
 interface Room {
   id: string;
@@ -37,9 +38,9 @@ export function RoomClient({ room }: { room: Room }) {
   }
 
   return (
-    <div className="grid h-screen grid-cols-1 gap-4 p-4 md:grid-cols-3">
+    <div className="grid h-screen grid-cols-1 gap-4 p-4 lg:grid-cols-4">
       {/* Room Info */}
-      <div className="md:col-span-1">
+      <div className="lg:col-span-1">
         <div className="rounded-lg border border-gray-200 p-6">
           <h2 className="text-lg font-semibold">Room Details</h2>
           <dl className="mt-4 space-y-2">
@@ -71,16 +72,21 @@ export function RoomClient({ room }: { room: Room }) {
           <ul className="mt-2 space-y-1 text-xs text-gray-600">
             <li>✅ M1: Project Setup</li>
             <li>✅ M2: Room Management</li>
-            <li>🔄 M3: Real-Time Chat</li>
-            <li>⏳ M4: Collaborative Editing</li>
+            <li>✅ M3: Real-Time Chat</li>
+            <li>🔄 M4: Collaborative Editing</li>
             <li>⏳ M5: Video/Audio Calls</li>
             <li>⏳ M6: File Sharing</li>
           </ul>
         </div>
       </div>
 
+      {/* Editor */}
+      <div className="rounded-lg border border-gray-200 lg:col-span-2">
+        <Editor roomId={room.id} userId={userId} username={username} />
+      </div>
+
       {/* Chat */}
-      <div className="rounded-lg border border-gray-200 md:col-span-2">
+      <div className="rounded-lg border border-gray-200 lg:col-span-1">
         <Chat roomId={room.id} userId={userId} username={username} />
       </div>
     </div>

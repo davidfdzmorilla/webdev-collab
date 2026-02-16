@@ -11,7 +11,13 @@
     "prepare": "husky"
   },
   "dependencies": {
+    "@tiptap/extension-collaboration": "^2.27.2",
+    "@tiptap/extension-collaboration-cursor": "^2.26.2",
+    "@tiptap/pm": "^2.27.2",
+    "@tiptap/react": "^2.27.2",
+    "@tiptap/starter-kit": "^2.27.2",
     "drizzle-orm": "^0.45.1",
+    "lib0": "^0.2.117",
     "next": "^15.1.6",
     "postgres": "^3.4.8",
     "react": "^19.0.0",
@@ -20,6 +26,10 @@
     "socket.io": "^4.8.3",
     "socket.io-client": "^4.8.3",
     "uuid": "^13.0.0",
+    "ws": "^8.19.0",
+    "y-protocols": "^1.0.7",
+    "y-websocket": "^3.0.0",
+    "yjs": "^13.6.29",
     "zod": "^4.3.6"
   },
   "devDependencies": {
@@ -30,6 +40,7 @@
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
     "@types/uuid": "^11.0.0",
+    "@types/ws": "^8.18.1",
     "autoprefixer": "^10.4.24",
     "drizzle-kit": "^0.31.9",
     "eslint": "^9.0.0",
