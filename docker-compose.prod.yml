@@ -1,0 +1,46 @@
+services:
+  app:
+    build: .
+    container_name: webdev-collab-app
+    ports:
+      - "3010:3000"
+    environment:
+      DATABASE_URL: postgres://collab_user:collab_password@postgres:5432/collab_db
+      REDIS_URL: redis://redis:6379
+      NODE_ENV: production
+    depends_on:
+      - postgres
+      - redis
+    restart: unless-stopped
+
+  postgres:
+    image: postgres:17-alpine
+    container_name: webdev-collab-postgres
+    environment:
+      POSTGRES_USER: collab_user
+      POSTGRES_PASSWORD: collab_password
+      POSTGRES_DB: collab_db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U collab_user"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  redis:
+    image: redis:7-alpine
+    container_name: webdev-collab-redis
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+  redis_data:
